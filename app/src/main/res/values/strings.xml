@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PokeApi</string>
+    <string name="message_error">Oops, can`t load data</string>
+    <string name="try_again">Try Again</string>
 </resources>

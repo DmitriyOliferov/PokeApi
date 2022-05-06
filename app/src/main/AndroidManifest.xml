@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApi">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.screen.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

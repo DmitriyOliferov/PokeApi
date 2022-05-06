@@ -12,9 +12,9 @@ import com.squareup.picasso.Picasso
 class PokemonListAdapter: PagingDataAdapter<Pokemon, PokemonViewHolder>(PokemonDiffCallback()) {
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val currentItem  = getItem(position)
-        holder.binding.apply {
-            tvName.text = "${currentItem?.name}"
+        val currentItem  = getItem(position) ?: return
+        with(holder.binding){
+            tvName.text = currentItem?.name
             Picasso.get().load(currentItem?.imageUrl).into(ivPokemon)
         }
     }
