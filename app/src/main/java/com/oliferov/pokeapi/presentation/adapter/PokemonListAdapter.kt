@@ -11,11 +11,16 @@ import com.squareup.picasso.Picasso
 
 class PokemonListAdapter: PagingDataAdapter<Pokemon, PokemonViewHolder>(PokemonDiffCallback()) {
 
+    var onPokemonClickListener: OnPokemonClickListener? =null
+
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         val currentItem  = getItem(position) ?: return
         with(holder.binding){
             tvName.text = currentItem?.name
             Picasso.get().load(currentItem?.imageUrl).into(ivPokemon)
+            root.setOnClickListener {
+                onPokemonClickListener?.onPokemonClick(currentItem)
+            }
         }
     }
 
@@ -26,5 +31,9 @@ class PokemonListAdapter: PagingDataAdapter<Pokemon, PokemonViewHolder>(PokemonD
             false
         )
         return PokemonViewHolder(binding)
+    }
+
+    interface OnPokemonClickListener{
+        fun onPokemonClick(pokemon: Pokemon)
     }
 }

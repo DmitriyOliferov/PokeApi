@@ -1,5 +1,6 @@
 package com.oliferov.pokeapi.data.repository
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -45,8 +46,15 @@ class RepositoryPokemonImpl() {
             return@withContext list
         }
 
+    suspend fun getPokemon(name: String): Pokemon{
+        val pokemon = ApiFactory.apiService.getPokemon(name).body()
+        Log.d("DxD",pokemon.toString())
+        val result = Mapper.mapPokemonDtoToPokemon(pokemon!!)
+        return result
+    }
+
     companion object{
-        const val PAGE_SIZE = 1126
+        const val PAGE_SIZE = 30
     }
 
 }
